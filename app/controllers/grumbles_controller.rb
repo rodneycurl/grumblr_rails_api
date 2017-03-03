@@ -1,11 +1,18 @@
 class GrumblesController < ApplicationController
   def index
     @grumbles = Grumble.all.order(:created_at)
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @grumble }
   end
 
   def show
     @grumble = Grumble.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @grumble }
   end
+end
 
   def new
     @grumble = Grumble.new

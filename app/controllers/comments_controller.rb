@@ -2,6 +2,9 @@ class CommentsController < ApplicationController
   def index
     @grumble = Grumble.find(params[:grumble_id])
     @comments = @grumble.comments.order(:created_at)
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @comments }
   end
 
   def show
